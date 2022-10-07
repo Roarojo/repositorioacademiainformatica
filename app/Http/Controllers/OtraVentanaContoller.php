@@ -21,7 +21,8 @@ class OtraVentanaContoller extends Controller
    public function eliminar(User $user){
     //dd($user);
      $user->delete();
-     return redirect()->route('post.index');
-    
+     //return redirect()->route('post.index');
+     return back()->with('mensaje','Eliminado');
    }
+   
 }

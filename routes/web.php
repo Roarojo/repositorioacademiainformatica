@@ -6,6 +6,9 @@ use App\Http\Controllers\OtraVentanaContoller;
 use App\Http\Controllers\CrearCuentaContoller;
 use App\Http\Controllers\LoginContoller;
 use App\Http\Controllers\LogoutContoller;
+use App\Http\Controllers\ModificarController;
+use App\Http\Controllers\ModalController;
+use App\Http\Controllers\ModificarCuentaController;
 
 
 /*
@@ -31,8 +34,14 @@ Route::post('crear',[CrearCuentaContoller::class,'crearDatos'])->name('crear-cue
 
 Route::get('/login',[LoginContoller::class,'mostrarLogin'])->name('login');
 
-//Route::get('/logout', [LogoutContoller::class, 'cerrarSesion'])->name('logout');
+
 Route::post('/logout', [LogoutContoller::class, 'cerrarSesion'])->name('logout');
 
 
 Route::delete('/eliminar/{user}',[OtraVentanaContoller::class,'eliminar'])->name('post.destroy');
+
+
+Route::post('/modificar/{user}',[ModificarController::class,'modificar'])->name('post.modificar');
+Route::get('/modal/{user}',[ModalController::class,'vincular'])->name('post.modal');
+
+Route::post('/modificar-cuenta/{user}',[ModificarCuentaController::class,'modificar'])->name('modificar-cuenta');

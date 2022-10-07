@@ -49,5 +49,6 @@
 </header>
   @yield('contenido')
   @stack('scripts')
+ 
 </body>
 </html>

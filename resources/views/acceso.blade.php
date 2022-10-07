@@ -5,10 +5,10 @@
 @section('contenido')
 <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
    <section class="container-fluid mx-auto mt-10>
-    <div>
-        @csrf
-           <p>{{auth()->user()->name}}</p>
-    </div>
+        <div>
+            @csrf
+            <p>{{auth()->user()->name}}</p>
+        </div>
     </section>
    
   <div class="overflow-x-auto relative shadow-md sm:rounded-lg p-10">
@@ -44,35 +44,82 @@
                 <td class="py-4 px-6">
                     {{$dato->email}}
                 </td>
-               
                 <td class="py-4 px-6">
-                    <button 
+                    <!--sweetalert crear-->
+                   @if (session('modificado'))
+                   @push('scripts')
+                     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                      <script>
+                          Swal.fire({
+                       position: 'top-end',
+                       icon: 'success',
+                       title: 'Elemento Modificado',
+                       showConfirmButton: false,
+                       timer: 1500
+                     })
+                      </script>
+                    @endpush    
+                @endif
+                  <!--fin sweetalert crear-->
+                    <form action="{{route('post.modificar',$dato->id)}}" method="POST">
+                        @csrf
+                    <button
                         type="submit" 
                         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
                             Editar
                     </button>
+                    </form>
                  
                 </td>
                 <td class="py-4 px-6">
-                    <form action="{{route('post.destroy',$dato->id)}}" method="POST">
-                        @method('DELETE') 
-                        @csrf
-                    <button 
-                        type="submit" 
-                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
-                            Eliminar
-                    </button>
-                    </form>
+                   <form action="{{route('post.destroy',$dato->id)}}" method="POST">
+                   <!--sweetalert crear-->
+                   @if (session('creado'))
+                    @push('scripts')
+                      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                       <script>
+                           Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Elemento Creado',
+                        showConfirmButton: false,
+                        timer: 1500
+                      })
+                       </script>
+                     @endpush    
+                 @endif
+                   <!--fin sweetalert crear-->
+                    <!--inicio del sweetalert Eliminar-->
+                    @if (session('mensaje'))
+                    @push('scripts')
+                      <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                       <script>
+                           Swal.fire({
+                        position: 'top-end',
+                        icon: 'warning',
+                        title: 'Elemento Eliminado',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                       </script>
+                     @endpush    
+                 @endif
+                    <!--fin del sweetalert-->
+                            @method('DELETE') 
+                            @csrf
+                        <button 
+                            type="submit" 
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                                Eliminar
+                        </button>
+                  </form>
                 </td>
             </tr>
           
         </tbody>
-    </tbody>
-    @endforeach
-    </table>
-</div>
-
-
- </section>  
+        @endforeach
+     </table> 
+    </div>
+    
 </div>
 @endsection
