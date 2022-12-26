@@ -7,7 +7,7 @@
 <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
     <div class="p-6 w-full max-w-md space-y-8 shadow-md border border-gray-200 rounded-lg">
       <div>
-        <img class="mx-auto h-36 w-auto " src="{{asset('imagenes/login.png')}}" alt="Practica con Laravel">
+        <img class="mx-auto h-36 w-auto" src="{{asset('imagenes/login.png')}}" alt="Practica con Laravel">
         <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Acceso</h2>
         
       </div>

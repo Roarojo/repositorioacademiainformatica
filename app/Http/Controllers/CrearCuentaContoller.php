@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 
 class CrearCuentaContoller extends Controller
 {
+	
     public function crearDatos(Request $request){
 
         //dd('datos obtenidos');
@@ -16,13 +17,14 @@ class CrearCuentaContoller extends Controller
             'email'=>'required|unique:users|email|max:60',
             'password'=>'required|confirmed|min:3'
         ]);
-
+        $persona = 'Empleado';
         //dd('Usuario creado');
         //Esto es igual que si escribieramos INSERT INTO Usuarios...
         User::create([
                'name' => $request->name,
                'email' => $request->email,
-               'password' => Hash::make( $request->password )
+               'password' => Hash::make( $request->password ),
+               'rol' => $persona
 
         ]);   
         

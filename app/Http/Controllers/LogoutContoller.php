@@ -6,10 +6,18 @@ use Illuminate\Http\Request;
 
 class LogoutContoller extends Controller
 {
-    public function cerrarSesion(){
-       // dd('logout');
-       auth()->logout();
+	public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    public function cerrarsecion(){
+     
+        auth()->logout();
 
-       return redirect()->route('index');
-   }
+        return redirect()->route('index');
+
+    }
+  
+
+
 }
